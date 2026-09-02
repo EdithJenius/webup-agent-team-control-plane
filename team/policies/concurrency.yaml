@@ -1,0 +1,10 @@
+schema_version: 1
+kind: concurrency-policy
+id: lease-and-worktree-isolation
+revision: 1
+project_control: { max_active_per_project: 1, transfer: timeout-or-human-confirmation }
+task_write: { max_active_per_task: 1, expired_lease_auto_claim: false }
+read_only_tasks: { shared_workspace_allowed: true }
+code_tasks: { worktree_required: true, allowed_paths_required: true, integration_owner: product-delivery-lead }
+stale_revision_write: reject
+conflict_resolution: escalate-never-overwrite

@@ -1,0 +1,15 @@
+schema_version: 1
+kind: project-state
+id: state-url-only-valid
+project_id: url-only-valid
+revision: 1
+status: active
+owner_role: product-delivery-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+current_stage: P1
+permission_level: C
+project_control_lease_ref: null
+next_allowed_actions: [confirm-client-ownership, audit-public-source]

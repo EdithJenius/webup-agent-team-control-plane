@@ -1,0 +1,20 @@
+schema_version: 1
+kind: artifact-index
+id: artifacts-release-without-human
+project_id: release-without-human
+revision: 1
+status: active
+owner_role: product-delivery-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+artifacts:
+  - { artifact_id: EVIDENCE-build, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/build.json, content_hash: sha256:evidence-build, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-functionality, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/functionality.json, content_hash: sha256:evidence-functionality, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-conversion-path, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/conversion-path.json, content_hash: sha256:evidence-conversion-path, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-mobile, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/mobile.json, content_hash: sha256:evidence-mobile, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-accessibility, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/accessibility.json, content_hash: sha256:evidence-accessibility, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-performance, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/performance.json, content_hash: sha256:evidence-performance, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-security, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/security.json, content_hash: sha256:evidence-security, source_refs: [], approval_refs: [], usage_status: internal_analysis }
+  - { artifact_id: EVIDENCE-rollback, artifact_type: quality-evidence, owner_role: independent-quality-lead, revision: 1, status: valid, location: artifacts/quality/rollback.json, content_hash: sha256:evidence-rollback, source_refs: [], approval_refs: [], usage_status: internal_analysis }

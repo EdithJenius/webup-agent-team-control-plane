@@ -1,0 +1,26 @@
+schema_version: 1
+kind: team
+id: web-design-upgrade-team
+revision: 2
+status: active
+project_control_role: product-delivery-lead
+roles:
+  - { id: product-delivery-lead, participation: core, spec: team/roles/product-delivery-lead.md }
+  - { id: brand-content-lead, participation: core, spec: team/roles/brand-content-lead.md }
+  - { id: visual-interaction-lead, participation: core, spec: team/roles/visual-interaction-lead.md }
+  - { id: frontend-commerce-lead, participation: core, spec: team/roles/frontend-commerce-lead.md }
+  - { id: independent-quality-lead, participation: core, spec: team/roles/independent-quality-lead.md }
+  - { id: motion-3d-lead, participation: conditional, spec: team/roles/motion-3d-lead.md }
+  - { id: localization-compliance-prep, participation: conditional, spec: team/roles/localization-compliance-prep.md }
+defaults:
+  service_tier: standard
+  permission_level: C
+  source_of_truth: git-files
+  auto_claim_ready_tasks: false
+  persistent_role_conversations_required: true
+  temporary_subagents_role_scoped_only: true
+  production_release_requires_human: true
+service_tiers:
+  quick: { use: mature-pattern-low-risk-change, may_reduce_hard_gates: false }
+  standard: { use: default-multi-option-full-review, may_reduce_hard_gates: false }
+  flagship: { use: high-originality-cinematic-high-approval, may_reduce_hard_gates: false }

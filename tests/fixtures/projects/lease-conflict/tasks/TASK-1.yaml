@@ -1,0 +1,27 @@
+schema_version: 1
+kind: task
+id: TASK-1
+project_id: lease-conflict
+revision: 1
+status: READY
+owner_role: frontend-commerce-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+title: Lease conflict regression task
+objective: Prove duplicate active write leases fail closed.
+task_type: regression-fixture
+priority: high
+charter_revision: 1
+scope: Read-only validator regression.
+allowed_paths: []
+forbidden_paths: []
+worktree_required: false
+dependencies: []
+inputs: []
+outputs: []
+acceptance_criteria: [validator-reports-multiple-active-task-leases]
+required_checks: [project-validation]
+required_approvals: []
+blockers: []

@@ -1,0 +1,15 @@
+schema_version: 1
+kind: approval-gates
+id: web-design-approval-gates
+revision: 1
+gates:
+  - { id: project-charter-direction, actor: named-human, invalidated_by: [charter-major-change] }
+  - id: brand-direction
+    actor: named-human
+    subjects: [brand-positioning, brand-promise, core-story, formal-claim, formal-copy]
+    invalidated_by: [positioning-change, brand-promise-change, core-story-change, formal-claim-change, formal-copy-change]
+    requires_human_reapproval: true
+  - { id: visual-narrative-direction, actor: named-human, invalidated_by: [visual-paradigm-change, core-path-change] }
+  - { id: advanced-motion-direction, actor: named-human, conditional: true, invalidated_by: [motion-scope-change, fallback-change] }
+  - { id: production-release, actor: named-human, invalidated_by: [candidate-change, gate-failure, rollback-change] }
+  - { id: post-launch-experiment, actor: named-human, invalidated_by: [experiment-scope-change] }

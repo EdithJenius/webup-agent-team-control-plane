@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webup.local/schemas/task",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://webup.local/schemas/common#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["project_id", "title", "objective", "task_type", "priority", "owner_role", "charter_revision", "scope", "allowed_paths", "forbidden_paths", "worktree_required", "dependencies", "inputs", "outputs", "acceptance_criteria", "required_checks", "required_approvals", "blockers"],
+      "properties": {
+        "kind": { "const": "task" },
+        "project_id": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["DRAFT", "BLOCKED", "READY", "CLAIMED", "IN_PROGRESS", "SELF_CHECK", "READY_FOR_REVIEW", "IN_REVIEW", "CHANGES_REQUESTED", "WAITING_APPROVAL", "APPROVED", "COMPLETED", "CANCELLED"] },
+        "title": { "type": "string", "minLength": 1 },
+        "objective": { "type": "string", "minLength": 1 },
+        "task_type": { "type": "string", "minLength": 1 },
+        "priority": { "type": "string", "minLength": 1 },
+        "owner_role": { "type": "string", "minLength": 1 },
+        "assignee": { "type": "string", "minLength": 1 },
+        "assignee_role": { "type": "string", "minLength": 1 },
+        "assigned_by": { "type": "string", "minLength": 1 },
+        "charter_revision": { "type": "integer", "minimum": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "allowed_paths": { "type": "array", "items": { "type": "string" } },
+        "forbidden_paths": { "type": "array", "items": { "type": "string" } },
+        "worktree_required": { "type": "boolean" },
+        "branch": { "type": "string", "minLength": 1 },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ref", "required_status", "required_revision"],
+            "properties": {
+              "ref": { "type": "string", "minLength": 1 },
+              "required_status": { "type": "string", "minLength": 1 },
+              "required_revision": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ref", "revision", "content_hash", "acceptance_status"],
+            "properties": {
+              "ref": { "type": "string", "minLength": 1 },
+              "revision": { "type": "integer", "minimum": 1 },
+              "content_hash": { "type": "string", "minLength": 1 },
+              "acceptance_status": { "enum": ["accepted", "accepted_with_known_risk", "rejected", "superseded"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["artifact_id", "expected_type"],
+            "properties": {
+              "artifact_id": { "type": "string", "minLength": 1 },
+              "expected_type": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+        "required_checks": { "type": "array", "items": { "type": "string" } },
+        "required_approvals": { "type": "array", "items": { "type": "string" } },
+        "independent_verifier_role": { "type": "string", "minLength": 1 },
+        "independent_verifier_instance": { "type": "string", "minLength": 1 },
+        "blockers": { "type": "array", "items": { "type": "string" } },
+        "lease_ref": { "type": "string", "minLength": 1 },
+        "return_request_ref": { "type": "string", "minLength": 1 }
+      },
+      "if": {
+        "properties": {
+          "status": { "enum": ["READY_FOR_REVIEW", "IN_REVIEW", "WAITING_APPROVAL", "APPROVED", "COMPLETED"] }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "assignee": { "type": "string", "minLength": 1 },
+          "assignee_role": { "type": "string", "minLength": 1 },
+          "independent_verifier_instance": { "type": "string", "minLength": 1 },
+          "independent_verifier_role": { "type": "string", "minLength": 1 }
+        },
+        "required": ["assignee", "assignee_role", "independent_verifier_instance", "independent_verifier_role"]
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

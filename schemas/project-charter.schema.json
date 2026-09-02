@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webup.local/schemas/project-charter",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://webup.local/schemas/common#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["project_id", "input_mode", "service_tier", "permission_level", "markets", "business_goals", "success_metrics", "audiences", "brand", "facts", "conversion_paths", "budgets", "approval_requirements", "unknowns", "risks"],
+      "properties": {
+        "kind": { "const": "project-charter" },
+        "project_id": { "type": "string", "minLength": 1 },
+        "input_mode": { "enum": ["url_only", "upgrade", "from_zero"] },
+        "service_tier": { "enum": ["quick", "standard", "flagship"] },
+        "permission_level": { "enum": ["A", "B", "C"] },
+        "markets": { "type": "array", "items": { "type": "string" } },
+        "business_goals": { "type": "array", "items": { "type": "string" } },
+        "success_metrics": { "type": "array", "items": { "type": "string" } },
+        "audiences": { "type": "array", "items": { "type": "string" } },
+        "brand": { "type": "object" },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["fact_id", "statement", "evidence_status", "evidence_refs", "market_scope"],
+            "properties": {
+              "fact_id": { "type": "string", "minLength": 1 },
+              "statement": { "type": "string", "minLength": 1 },
+              "evidence_status": { "enum": ["observed_fact", "inference", "creative_proposal", "client_approved", "rejected"] },
+              "evidence_refs": { "type": "array", "items": { "type": "string" } },
+              "market_scope": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          }
+        },
+        "conversion_paths": { "type": "array", "items": { "type": "string" } },
+        "budgets": { "type": "object" },
+        "approval_requirements": { "type": "array", "items": { "type": "string" } },
+        "unknowns": { "type": "array", "items": { "type": "string" } },
+        "risks": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

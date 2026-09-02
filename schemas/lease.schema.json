@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webup.local/schemas/lease",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://webup.local/schemas/common#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["project_id", "lease_type", "holder_role", "holder_instance", "subject_ref", "started_at", "heartbeat_at", "expires_at"],
+      "properties": {
+        "kind": { "const": "lease" },
+        "project_id": { "type": "string", "minLength": 1 },
+        "lease_type": { "enum": ["project_control", "task_write"] },
+        "status": { "enum": ["active", "expired", "released", "revoked"] },
+        "holder_role": { "type": "string", "minLength": 1 },
+        "holder_instance": { "type": "string", "minLength": 1 },
+        "subject_ref": { "type": "string", "minLength": 1 },
+        "started_at": { "type": "string", "format": "date-time" },
+        "heartbeat_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

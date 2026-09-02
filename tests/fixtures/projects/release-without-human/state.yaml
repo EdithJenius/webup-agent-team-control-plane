@@ -1,0 +1,25 @@
+schema_version: 1
+kind: project-state
+id: state-release-without-human
+project_id: release-without-human
+revision: 1
+status: active
+owner_role: product-delivery-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+current_stage: P8
+permission_level: C
+project_control_lease_ref: null
+next_allowed_actions: [request-human-production-release-approval, provide-rollback-reference]
+release_candidate_ref: release-1
+quality_gates:
+  - { id: build, result: passed, evidence_ref: EVIDENCE-build, evidence_revision: 1 }
+  - { id: functionality, result: passed, evidence_ref: EVIDENCE-functionality, evidence_revision: 1 }
+  - { id: conversion-path, result: passed, evidence_ref: EVIDENCE-conversion-path, evidence_revision: 1 }
+  - { id: mobile, result: passed, evidence_ref: EVIDENCE-mobile, evidence_revision: 1 }
+  - { id: accessibility, result: passed, evidence_ref: EVIDENCE-accessibility, evidence_revision: 1 }
+  - { id: performance, result: passed, evidence_ref: EVIDENCE-performance, evidence_revision: 1 }
+  - { id: security, result: passed, evidence_ref: EVIDENCE-security, evidence_revision: 1 }
+  - { id: rollback, result: passed, evidence_ref: EVIDENCE-rollback, evidence_revision: 1 }

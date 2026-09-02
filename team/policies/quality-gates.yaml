@@ -1,0 +1,25 @@
+schema_version: 1
+kind: quality-gates
+id: global-release-hard-gates
+revision: 1
+gates:
+  - { id: build, blocker: true }
+  - { id: functionality, blocker: true }
+  - { id: conversion-path, blocker: true }
+  - { id: mobile, blocker: true }
+  - { id: accessibility, blocker: true, baseline: WCAG-2.2-AA }
+  - { id: performance, blocker: true, defaults: { lcp_ms_max: 2500, inp_ms_max: 200, cls_max: 0.1 } }
+  - { id: security, blocker: true }
+  - { id: rollback, blocker: true }
+independence:
+  maker_and_checker_different_role: true
+  maker_and_checker_different_instance: true
+  checker_may_modify_reviewed_object: false
+exceptions:
+  blocker_allowed: false
+  non_blocker_requires: [named-human, reason, scope, expires_at]
+advanced_motion_evidence:
+  thresholds_source: project-charter
+  agent_may_relax_thresholds: false
+  required_metrics: [frame-rate-fps, frame-time-ms, memory-mb, gpu-profile, device-pixel-ratio, media-payload-bytes, load-time-ms, recovery-time-ms]
+  required_context: [device, input-mode, network, fallback-level, run-count, raw-report]

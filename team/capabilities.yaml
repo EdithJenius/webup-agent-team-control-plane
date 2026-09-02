@@ -1,0 +1,91 @@
+schema_version: 1
+kind: capability-registry
+id: web-design-upgrade-capabilities
+revision: 1
+capabilities:
+  - id: web-research
+    allowed_roles: [product-delivery-lead, brand-content-lead, visual-interaction-lead, localization-compliance-prep]
+    trigger: A work package requires public facts, market context, product evidence, or source verification.
+    inputs: [explicit-work-package, accepted-research-questions, approved-public-source-scope]
+    outputs: [source-register-updates, evidence-records, versioned-research-findings]
+    failure_fallback: [record-access-or-source-failure, use-approved-public-alternative, mark-unsupported-findings-blocked, never-bypass-access-control]
+    network_access: read-only
+    repository_write: evidence-and-source-records-only
+    preferred_skill: agent-reach
+    network_policy_skill: web-access
+    human_approval: false
+  - id: site-capture
+    allowed_roles: [product-delivery-lead, visual-interaction-lead, frontend-commerce-lead, independent-quality-lead]
+    trigger: A provided URL must be inventoried, screenshotted, or technically audited.
+    inputs: [explicit-work-package, provided-url, approved-capture-scope]
+    outputs: [site-inventory, timestamped-screenshots, technical-audit-evidence]
+    failure_fallback: [record-access-control-or-capture-failure, use-approved-public-snapshot-or-client-provided-material, mark-capture-dependent-work-blocked, never-bypass-access-control]
+    network_access: read-only
+    repository_write: evidence-and-source-records-only
+    preferred_skill: bb-browser
+    human_approval: false
+  - id: asset-inventory
+    allowed_roles: [brand-content-lead, visual-interaction-lead, motion-3d-lead]
+    trigger: Public images or media require source, hash, and rights classification.
+    inputs: [explicit-work-package, accepted-source-register, publicly-observed-or-client-provided-assets]
+    outputs: [asset-inventory, source-and-content-hash-records, rights-status-records]
+    failure_fallback: [record-missing-source-or-rights-evidence, use-approved-placeholder-for-production, mark-unverified-assets-analysis-only, never-use-unverified-assets-in-production]
+    network_access: read-only
+    repository_write: evidence-and-source-records-only
+    human_approval: false
+  - id: brand-generation
+    allowed_roles: [brand-content-lead]
+    trigger: Approved facts are insufficient for positioning, story, messaging, or website copy.
+    inputs: [explicit-work-package, accepted-product-strategy, versioned-facts-and-recorded-unknowns]
+    outputs: [versioned-brand-proposals, copy-candidates, claims-register-updates]
+    failure_fallback: [record-insufficient-evidence, retain-unknown-or-creative-proposal-status, block-formal-or-regulated-copy-pending-human-approval, never-fabricate-evidence]
+    network_access: none
+    repository_write: assigned-artifact-paths-only
+    human_approval: client-approval-before-formal-use
+  - id: visual-design
+    allowed_roles: [visual-interaction-lead]
+    trigger: Product, brand, content hierarchy, and experience inputs are accepted.
+    inputs: [explicit-work-package, approved-brand-direction, accepted-content-hierarchy-and-conversion-path]
+    outputs: [versioned-direction-options, responsive-interaction-contract, design-prototype-and-asset-manifest]
+    failure_fallback: [record-missing-or-infeasible-inputs, use-approved-placeholder-assets, return-structured-change-request-or-blocked]
+    network_access: read-only-when-assets-are-required
+    repository_write: assigned-artifact-paths-only
+    human_approval: direction-approval
+  - id: frontend-commerce-build
+    allowed_roles: [frontend-commerce-lead]
+    trigger: Design and commerce interfaces are approved.
+    inputs: [explicit-work-package, approved-design-contract, accepted-commerce-interface-and-recorded-p5-outcome]
+    outputs: [runnable-site-and-tests, build-and-preview-evidence, versioned-release-candidate-and-rollback-procedure]
+    failure_fallback: [record-build-integration-or-service-failure, use-approved-non-production-degradation, mark-production-release-blocked, never-auto-publish]
+    network_access: dependency-and-approved-service-access
+    repository_write: assigned-worktree-paths-only
+    human_approval: production-release
+  - id: advanced-motion-3d
+    allowed_roles: [motion-3d-lead]
+    trigger: Approved storytelling requires WebGL, Three.js, shaders, real-time 3D, or a complex media timeline.
+    trigger_conditions: [advanced-webgl-threejs-shader-or-media-timeline, css-gsap-insufficient, flagship-specialist-validation, gpu-memory-frame-risk]
+    invalid_triggers: [prestige-only]
+    inputs: [explicit-work-package, approved-storyboard-and-trigger-decision, versioned-frontend-integration-boundary-and-budgets]
+    outputs: [motion-subsystem-api-and-prototype, l0-l4-fallbacks, performance-and-recovery-evidence]
+    failure_fallback: [record-budget-asset-or-runtime-failure, activate-approved-l1-l4-fallback, block-production-use-when-core-path-or-rights-fail]
+    network_access: approved-assets-and-dependencies-only
+    repository_write: assigned-worktree-paths-only
+    human_approval: direction-and-production-release
+  - id: independent-quality-validation
+    allowed_roles: [independent-quality-lead]
+    trigger: A maker freezes a review candidate.
+    inputs: [explicit-validation-work-package, immutable-candidate-id, maker-self-check-and-acceptance-criteria]
+    outputs: [quality-report-and-reproducible-evidence, defect-verdict-and-structured-return, release-gate-recommendation]
+    failure_fallback: [record-unverifiable-candidate-or-test-service-failure, use-approved-local-or-manual-evidence-path, mark-gate-blocked-never-auto-approve]
+    network_access: preview-and-approved-test-services-only
+    repository_write: reports-only
+    human_approval: production-release-remains-human
+  - id: localization-compliance-preparation
+    allowed_roles: [localization-compliance-prep]
+    trigger: A project has multiple markets, languages, regulated claims, or regional infrastructure.
+    inputs: [explicit-work-package, accepted-claims-register-and-source-evidence, named-market-language-and-commerce-path]
+    outputs: [localized-content-candidate, claim-evidence-map-and-risk-register, named-expert-review-package]
+    failure_fallback: [record-missing-evidence-or-expert-dependency, use-clearly-marked-placeholder-or-source-language, block-formal-regional-use-pending-named-expert-approval]
+    network_access: read-only
+    repository_write: assigned-artifact-paths-only
+    human_approval: named-domain-expert-approval-when-required

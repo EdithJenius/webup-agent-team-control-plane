@@ -1,0 +1,7 @@
+schema_version: 1
+kind: knowledge-index
+id: shared-knowledge-index
+revision: 1
+status: active
+required_dimensions: [client, project, market, language, industry, knowledge_type, version, evidence_source, sensitivity, reuse_scope]
+entries: []

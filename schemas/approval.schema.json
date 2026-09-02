@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webup.local/schemas/approval",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://webup.local/schemas/common#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["project_id", "approval_type", "subject_ref", "subject_revision", "decision", "decided_by", "decided_by_type", "decided_at", "scope", "expires_at"],
+      "properties": {
+        "kind": { "const": "approval" },
+        "project_id": { "type": "string", "minLength": 1 },
+        "approval_type": { "type": "string", "minLength": 1 },
+        "subject_ref": { "type": "string", "minLength": 1 },
+        "subject_revision": { "type": "integer", "minimum": 1 },
+        "decision": { "enum": ["approved", "rejected"] },
+        "decided_by": { "type": "string", "minLength": 1 },
+        "decided_by_type": { "enum": ["human", "agent"] },
+        "decided_at": { "type": "string", "format": "date-time" },
+        "scope": { "type": "string", "minLength": 1 },
+        "expires_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

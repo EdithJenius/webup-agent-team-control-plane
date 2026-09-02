@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://webup.local/schemas/change-request",
+  "type": "object",
+  "allOf": [
+    { "$ref": "https://webup.local/schemas/common#/$defs/record" },
+    {
+      "type": "object",
+      "required": ["project_id", "original_task_id", "artifact_id", "artifact_revision", "charter_revision", "return_type", "raised_by", "target_owner", "priority", "original_goal", "issue_summary", "evidence", "downstream_impact", "preserve", "modification_direction", "new_acceptance_criteria", "global_guidance", "scope", "requires_human_reapproval"],
+      "properties": {
+        "kind": { "const": "change-request" },
+        "project_id": { "type": "string", "minLength": 1 },
+        "original_task_id": { "type": "string", "minLength": 1 },
+        "artifact_id": { "type": "string", "minLength": 1 },
+        "artifact_revision": { "type": "integer", "minimum": 1 },
+        "charter_revision": { "type": "integer", "minimum": 1 },
+        "return_type": { "enum": ["quality_defect", "requirement_interpretation", "approved_direction_change"] },
+        "raised_by": { "type": "string", "minLength": 1 },
+        "target_owner": { "type": "string", "minLength": 1 },
+        "priority": { "type": "string", "minLength": 1 },
+        "original_goal": { "type": "string", "minLength": 1 },
+        "issue_summary": { "type": "string", "minLength": 1 },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "downstream_impact": { "type": "array", "items": { "type": "string" } },
+        "preserve": { "type": "array", "items": { "type": "string" } },
+        "modification_direction": { "type": "array", "items": { "type": "string" } },
+        "new_acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+        "global_guidance": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "requires_human_reapproval": { "type": "boolean" }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

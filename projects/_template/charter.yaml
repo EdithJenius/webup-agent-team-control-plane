@@ -1,0 +1,25 @@
+schema_version: 1
+kind: project-charter
+id: charter-template
+project_id: template
+revision: 1
+status: draft
+owner_role: product-delivery-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+input_mode: url_only
+service_tier: standard
+permission_level: C
+markets: []
+business_goals: []
+success_metrics: []
+audiences: []
+brand: {}
+facts: []
+conversion_paths: []
+budgets: {}
+approval_requirements: []
+unknowns: [source-url, client-ownership-confirmation, business-goal, primary-conversion-path]
+risks: []

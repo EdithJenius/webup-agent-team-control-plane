@@ -1,0 +1,8 @@
+.worktrees/
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+projects/*/
+!projects/_template/

@@ -1,0 +1,10 @@
+schema_version: 1
+kind: change-control
+id: structured-upstream-return
+revision: 1
+change_types:
+  - { id: quality_defect, confirmation: downstream-reviewer }
+  - { id: requirement_interpretation, confirmation: project-controller }
+  - { id: approved_direction_change, confirmation: named-human }
+required_fields: [original_task_id, artifact_id, artifact_revision, charter_revision, return_type, raised_by, target_owner, priority, original_goal, issue_summary, evidence, downstream_impact, preserve, modification_direction, new_acceptance_criteria, global_guidance, scope, requires_human_reapproval]
+escalation_after_unresolved_rounds: 2

@@ -1,0 +1,10 @@
+schema_version: 1
+kind: permissions-policy
+id: stage-scoped-progressive-authority
+revision: 1
+levels:
+  C: { description: high-frequency-human-approval, production_release: human }
+  B: { description: autonomous-routine-work-human-direction-and-release, production_release: human }
+  A: { description: autonomous-within-approved-charter, production_release: human }
+upgrade: { automatic: false, suggestion_after_consecutive_first_passes: 2, confirmation: named-human }
+downgrade_triggers: [major-rework, brand-change, business-model-change, compliance-risk, visual-paradigm-change]

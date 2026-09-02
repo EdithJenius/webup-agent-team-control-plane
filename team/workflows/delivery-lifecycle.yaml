@@ -1,0 +1,41 @@
+schema_version: 1
+kind: delivery-lifecycle
+id: web-design-delivery
+revision: 1
+stages:
+  - { id: P0, name: project-charter, depends_on: [], optional: false }
+  - { id: P1, name: evidence-assets-current-state-audit, depends_on: [P0], optional: false }
+  - { id: P2, name: product-then-brand-strategy, depends_on: [P1], optional: false }
+  - { id: P3, name: content-hierarchy-and-experience-architecture, depends_on: [P2], optional: false }
+  - { id: P4, name: visual-and-interaction-direction, depends_on: [P3], optional: false }
+  - id: P5
+    name: advanced-motion-3d-feasibility
+    depends_on: [P4]
+    optional: true
+    trigger_role: motion-3d-lead
+    trigger_decision:
+      owner: product-delivery-lead
+      conditions: [advanced-webgl-threejs-shader-or-media-timeline, css-gsap-insufficient, flagship-specialist-validation, gpu-memory-frame-risk]
+      invalid_conditions: [prestige-only]
+      evidence: [approved-visual-direction, storyboard, performance-budget, accessibility-budget, frontend-integration-boundary, asset-rights]
+      outcomes: [triggered, skipped]
+      record_fields: [outcome, decided_by, decided_at, evidence_refs, rationale]
+    task_creation: { triggered: true, skipped: false, no_empty_task_when_skipped: true }
+  - id: P6
+    name: frontend-and-commerce-implementation
+    depends_on: [P4]
+    optional_dependency: P5
+    optional: false
+    branch_dependencies:
+      triggered:
+        required_stages: [P4, P5]
+        required_artifacts: [motion-subsystem-api, l0-l4-fallbacks, performance-report]
+        required_approvals: [advanced-motion-direction]
+        api_acceptance_owner: frontend-commerce-lead
+      skipped:
+        required_stages: [P4]
+        required_approvals: [visual-narrative-direction]
+        p5_task_created: false
+  - { id: P7, name: independent-quality-validation, depends_on: [P6], optional: false }
+  - { id: P8, name: human-production-release-approval, depends_on: [P7], optional: false }
+  - { id: P9, name: deploy-human-review-retrospective, depends_on: [P8], optional: false, review_window_days: { minimum: 14, maximum: 30 } }

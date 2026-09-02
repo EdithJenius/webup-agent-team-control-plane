@@ -1,0 +1,8 @@
+schema_version: 1
+kind: knowledge-reuse-policy
+id: namespaced-client-safe-reuse
+revision: 1
+required_dimensions: [client, project, market, language, industry, knowledge_type, version, evidence_source, sensitivity, reuse_scope]
+default_cross_project_reuse: [methods, generic-components, anonymized-lessons, explicitly-authorized-assets]
+forbidden_without_authorization: [client-copy, private-data, client-media, highly-similar-brand-direction]
+secret_storage: external-vault-reference-only

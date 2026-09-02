@@ -1,0 +1,12 @@
+schema_version: 1
+kind: artifact-index
+id: artifacts-template
+project_id: template
+revision: 1
+status: draft
+owner_role: product-delivery-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+artifacts: []

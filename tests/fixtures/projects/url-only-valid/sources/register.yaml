@@ -1,0 +1,26 @@
+schema_version: 1
+kind: source-register
+id: sources-url-only-valid
+project_id: url-only-valid
+revision: 1
+status: active
+owner_role: product-delivery-lead
+created_at: 2026-08-19T00:00:00+08:00
+updated_at: 2026-08-19T00:00:00+08:00
+created_by: product-delivery-lead
+updated_by: product-delivery-lead
+sources:
+  - source_id: SRC-1
+    source_url: https://example.com/
+    source_role: unknown
+    provided_by: client
+    retrieved_at: 2026-08-19T00:00:00+08:00
+    retrieval_method: public-web
+    access_scope: public
+    snapshot_refs: []
+    page_refs: []
+    asset_refs: []
+    content_hash: sha256:example
+    usage_status: publicly_observed
+    evidence_status: observed_fact
+    known_limits: [client-ownership-confirmation, production-image-rights-unconfirmed]

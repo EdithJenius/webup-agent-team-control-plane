@@ -1,0 +1,25 @@
+schema_version: 1
+kind: task-lifecycle
+id: dependency-driven-task-lifecycle
+revision: 1
+states: [DRAFT, BLOCKED, READY, CLAIMED, IN_PROGRESS, SELF_CHECK, READY_FOR_REVIEW, IN_REVIEW, CHANGES_REQUESTED, WAITING_APPROVAL, APPROVED, COMPLETED, CANCELLED]
+transitions:
+  - { from: DRAFT, to: BLOCKED, actor: owner-role }
+  - { from: DRAFT, to: READY, actor: project-controller, requires: [valid-structure, satisfied-dependencies] }
+  - { from: BLOCKED, to: READY, actor: project-controller, requires: [resolved-blockers, satisfied-dependencies] }
+  - { from: READY, to: CLAIMED, actor: project-controller, requires: [explicit-assignee, valid-task-write-lease] }
+  - { from: CLAIMED, to: IN_PROGRESS, actor: assignee }
+  - { from: IN_PROGRESS, to: SELF_CHECK, actor: assignee }
+  - { from: SELF_CHECK, to: READY_FOR_REVIEW, actor: assignee, requires: [frozen-output, self-check-evidence] }
+  - { from: READY_FOR_REVIEW, to: IN_REVIEW, actor: named-reviewer }
+  - { from: IN_REVIEW, to: CHANGES_REQUESTED, actor: named-reviewer, requires: [structured-change-request] }
+  - { from: CHANGES_REQUESTED, to: IN_PROGRESS, actor: assignee }
+  - { from: IN_REVIEW, to: WAITING_APPROVAL, actor: named-reviewer, requires: [approval-request] }
+  - { from: WAITING_APPROVAL, to: APPROVED, actor: named-human, requires: [bound-subject-revision] }
+  - { from: WAITING_APPROVAL, to: CHANGES_REQUESTED, actor: named-human, requires: [structured-change-request] }
+  - { from: IN_REVIEW, to: APPROVED, actor: authorized-reviewer, requires: [all-acceptance-criteria] }
+  - { from: APPROVED, to: COMPLETED, actor: project-controller, requires: [downstream-acceptance-or-final-archive] }
+  - { from: DRAFT, to: CANCELLED, actor: project-controller }
+  - { from: BLOCKED, to: CANCELLED, actor: project-controller }
+  - { from: READY, to: CANCELLED, actor: project-controller }
+automation: [validate-structure, summarize-status, detect-conflict]
